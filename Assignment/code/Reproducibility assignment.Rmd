@@ -1,0 +1,96 @@
+---
+title: "reproducible_figures_assignment"
+author: 'Candidate number: 1051932'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("C:/Users/Tay/OneDrive - Nexus365/Year 3/Computing skills/Representing data/Assignment")
+```
+
+## Question 01: What is the reproducibility crisis in science and should we care?
+The reproducibility crisis is a name given to the current state of research, where other researchers are not able to produce similar results to the original study. In other words, the experimental and analytical methods outlined in the original study – when used by a different researcher – does not result in them reaching the same conclusions as the original researcher. This puts into question the reliability of the original study, and therefore its quality. Currently, lack of reproducible studies is the norm. Over 70% of researchers surveyed by Nature in 2016 reported to have failed in reproducing someone else’s – or their own – results (Baker, 2016). The reproducibility crisis should be cared out because it destabilises the foundations upon which knowledge is built. If results are not reproducible, conclusions are limited to a specific context, cannot be generalised to other scenarios.
+
+One major reason why researchers may not be able to reproduce results is poor documentation. Therefore some researchers cannot even reproduce their own data. They forget to note down exactly what steps were taken to collect and process data, so when coming back to their old studies, they find it difficult to interpret code and figures. Another reason is publication bias, towards fresh novel papers that vouch new and exciting findings, and against confirmation or negation of an already published article (Baker, 2016). This pushes researchers to focus more on producing new studies rather than reproducing older ones.
+A way forward, to ensure the reproducibility crisis is not exacerbated in the future, is to engage with open research. Whilst there can be additional costs for the researcher to make their papers open access, there are also incentives. Open access papers have increased reach due to fewer paywalls than subscription papers, making the chances of researchers accessing and reproducing studies more likely. Open access papers have been found to have more citations (McKiernan et al., 2016). Though, sharing research does not tackle the crisis at its core. Ensuring that methods are meticulously noted and are reproducible by others is pivotal. Researchers should actively design their experiments with reproducibility in mind. Whilst this may require more initial effort, research can be reconstructed with ease by future studies. 
+
+The reproducibility crisis can be greatly discouraging for upcoming and established scientists alike (Fanelli, 2017). I believe that despite its pessimistic narrative, there is room for empowerment and inspiration. As mentioned before, reproducibility should be integral to design and implementation of research, such that a high standard of integrity and quality is maintained, so as to shift the norm of unreproducible research.
+
+
+## Question 02: Create a figure using the Palmer Penguin dataset that is correct but badly communicates the data.
+Focus on visual elements rather than writing misleading text on it. Provide the figure and explain your choices. 100-200 words
+```{r, bad figure, fig.align='center'}
+library(palmerpenguins)
+library(ggplot2)
+
+penguins<-data.frame(palmerpenguins::penguins)
+
+ggplot(penguins, aes(x=body_mass_g, y=flipper_length_mm))+ geom_point(size=5)+
+  labs(x= "Body Mass", y= "Flipper Length")+
+  scale_x_continuous(breaks = c(3000, 3010, 3500, 4600, 7000))+
+  scale_y_continuous(breaks = c(170, 180, 195, 209, 230))
+
+```
+This graph attempts to communicate the relationship between body mass and flipper length of penguins - though there is no title to outline this. The axes are labelled but lack units, so the reader cannot interpret what the values on each axes mean. The scales used for both axes do not have consistent breaks. The numbers of each scale do not increase in regular intervals, and have large and/or irregular gaps between values. On the x axis two labels overlap, making them illegible. This makes reading values of each data point difficult. The discernment of one data point from another is made difficult by the large size of each dot, causing them to overlap. There is also no effort to partition or label the various species of penguin included in this graph, so interspecific trends cannot be disentangled from overarching trends (e.g. there may be a negative relationship between body mass and flipper length for a specific group of penguins, despite there being a positive association for all penguins). Moreover, the lack of a regression line forces the reader to try and infer the relationship between body mass and flipper length, rather than the figure demonstrating what association is occurring.
+
+## Question 03: Discuss how colour choice is important for communication in science figures and what considerations should be made
+300-500 words
+
+The use of colour in representing data provides an additional layer of information, when used correctly. Because colour (hue and brightness) is a source of information, misuse of colour when representing data can lead to misinformation - intentional or not. The key issue is the use of perceptually non-uniform colour gradients, such as the 'rainbow' colour scheme. Use of uneven colour gradients can perceptually distort data. For example, the yellow in the middle of rainbow colour gradients is often misinterpreted as the most extreme or significant data, due to yellow's heightened brightness relative to other colours in the rainbow.
+
+It is also important for scientific figures to be accessible to all. Researchers must ensure information conveyed by colours can also be extracted by readers with colour-vision deficiencies. This is where rainbow also fails, and where colour gradients like 'batlow' prevail. Batlow is known as a scientifically derived colour map, because unlike rainbow (a physical colour map), batlow contains colours that vary in hue and brightness in a consistent way, i.e. colours that are in an intuitive perceptual order. This allows for data variation to be interpretted by the reader with minimal visual error caused by perceptual biases (e.g. exaggeration of the meaning of yellows). Crameri et al. (2020) liken the use of perceptually uniform colour gradients to the use of equally spaced axis intervals (Crameri et al., 2020). Colour gradients must increase in equidistant units across the colour space.
+
+Because of these issues that can arise from misuse of colour in scientific figures, scientists need to consider the following. First, researchers should make an effort to look for accessible and scientifically derived colour maps. This is becoming easier due to more researchers beginning to create standalone colour palette packages and checking software to assess accessibility of figure colours for colour-blind users (e.g. [colorbrewer.org] (https://colorbrewer2.org) ). Second, researchers should consider which class of colour map best complements their figure (Crameri et al., 2020). For example, sequential colour maps (e.g. batlow) are appropriate for data that have no pivotal values (Crameri et al., 2020). Whereas divergent colour maps (e.g. roma) can be used for data that surrounds a central value, such as distribution data (Crameri et al., 2020). Third, scientists should aim to reduce any potential misinterpretation due to inherent preceptual biases of humans. Even if science-based colour gradients are used, the same colour may be interpreted as different values on a graph depending on its surrounding colours (demonstrated by Argyle and Craik-O'Brien-CornSweet illusions). This issue can apply to heatmap plots, but can be ameliorated by incorporating background colouring in between plots (Crameri et al., 2020). A consistent background colour means that perceptual distortion is less likely, because surroundings are the same for every plot.
+
+
+
+Question 04: Run a statistical test on the Palmer Penguins dataset and produce a figure to explain it.
+Please create a new .rmd or .r file called penguin_assignment.r. Follow the subfolders structure in the notebooks, you may need to go through the notebooks again.
+
+Use one of my files (See "Optional Template!" above) as a template if you like.
+
+Your code should include the steps practised in the lab session:
+
+Load the data
+Appropriately clean the data
+New: Run a statistical test
+Create a figure
+Save the figure
+```{r, load libraries}
+library(palmerpenguins)
+library(ggplot2)
+library(janitor)
+library(dplyr)
+library(tidyr)
+library(ragg)
+library(svglite)
+```
+
+```{r, loading the data}
+
+```
+
+As we have already covered a boxplot, please choose something different to plot.
+
+Your figure should communicate the statistical test you have run. For example:
+
+A T-test on bill depth length in Adelie vs Gentoo penguins, plot two overlapping histograms.
+A linear regression model between body mass and flipper length, plot a scatterplot with the linear model overlaid.
+Something else!
+You can use R script(s) and/or RMarkdown file as you prefer.
+
+Your aim is that someone else can run your code and understand the steps involved.
+
+Upload the code and figure file to Github, and provide the url to where it is on GitHub (please ensure anything identifying you is removed!)
+
+Question 05: Download someone else's example from Question 04.
+Provide the url of the work you are reviewing. In 250-500 words answer the following:
+
+What elements of your partner's code helped you to understand their data pipeline?
+Did you try to run it? Did it work?
+What suggestions would you make for improving their code to make it more understandable or reproducible, and why?
+If you needed to alter your partner's figure using their code, do you think that would be easy or difficult, and why?
+Reflect on your own code and figure from Question 4 with reference to your partner's work and also their review of yours.
+What improvements did they suggest, and do you agree?
+What did you learn about writing code for other people?
