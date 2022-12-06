@@ -1,4 +1,4 @@
-#Set working directory to assignment directory containing code and figure files!
+#Set working directory to directory containing code and figure files!
 
 #load libraries and functions
 source("code/libraries.r")
