@@ -1,2 +1,6 @@
 # penguins_assignment
-Please download entire "assignment" repository to get correct subfolder structure for code to work!
+The downloaded .zip file should contain the following files:
+- data_clean
+- data_raw
+- figures
+- code
