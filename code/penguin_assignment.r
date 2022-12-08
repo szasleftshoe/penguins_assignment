@@ -56,11 +56,11 @@ write.csv(transformed_data,paste0("data_clean/transformed_data.csv"))
 
 # check normality of transformed data
 par(mfrow = c(1, 2))
-qqnorm(subset(cleaned_transformed_data, species == "Adelie Penguin (Pygoscelis adeliae)")$log_culmen_length)
-qqline(subset(cleaned_transformed_data, species == "Adelie Penguin (Pygoscelis adeliae)")$log_culmen_length)
+qqnorm(subset(transformed_data, species == "Adelie Penguin (Pygoscelis adeliae)")$log_culmen_length)
+qqline(subset(transformed_data, species == "Adelie Penguin (Pygoscelis adeliae)")$log_culmen_length)
 
-qqnorm(subset(cleaned_transformed_data, species == "Gentoo penguin (Pygoscelis papua)")$log_culmen_length)
-qqline(subset(cleaned_transformed_data, species == "Gentoo penguin (Pygoscelis papua)")$log_culmen_length)
+qqnorm(subset(transformed_data, species == "Gentoo penguin (Pygoscelis papua)")$log_culmen_length)
+qqline(subset(transformed_data, species == "Gentoo penguin (Pygoscelis papua)")$log_culmen_length)
 # transformed Gentoo data still not normally distributed, must use non-parametric test
 
 ## Mann-Whitney U/ Wilcoxon Test
